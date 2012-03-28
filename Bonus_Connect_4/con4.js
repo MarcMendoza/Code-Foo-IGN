@@ -9,34 +9,88 @@ var ctx = canvas.getContext("2d");
 var gloop,
 	width = canvas.width,
 	height = canvas.height,
-	mouseX, mouseY,
-	optionSelected = 0,
+	mouseLocX, mouseLocY,
+	mouseClickX, mouseClickY,
+	optionSelected = 0;
 //int to keep track of current game state
 // 1: Title Menu
 // 2: In-Game
 // 3: Pause Menu
 // 4: Finished Screen
-	curGameState = 1;
+enum GameState {TitleMenu, InGame, PauseMenu, FinishedScreen};
+var curGameState = GameState.TitleScreen;
 
+var titleText = ["Easy",
+				"Medium",
+				"Hard"];	
 //clears the screen with white
 var clear = function(){
 	ctx.clearRect(0, 0, width, height);
 };
 
-var OnMouseOver = function onMouseover(e){
-	mouseX = e.clientX - canvas.clientLeft;
-	mouseY = e.clientY - canvas.clientTop;
+var Debug = function(){
+	ctx.font="20px Comic Sans MS";
+	ctx.fillStyle="#999";
+	
+	ctx.fillText("mouseLocX: " + mouseLocX, 20, 20);
+	ctx.fillText("mouseLocY: " + mouseLocY, 20, 50);
+	
+	ctx.fillText("mouseClickX: " + mouseClickX, 180, 20);
+	ctx.fillText("mouseClickY: " + mouseClickY, 180, 50);
 };
+
+var OnMouseMove = function onMouseover(e){
+	var obj = canvas;
+    var top = 0;
+    var left = 0;
+    while (obj && obj.tagName != 'BODY') {
+        top += obj.offsetTop;
+        left += obj.offsetLeft;
+        obj = obj.offsetParent;
+    }
+	
+	mouseLocX = e.clientX - left + window.pageXOffset;
+	mouseLocY = e.clientY - top + window.pageYOffset;
+};
+
+var OnClick = function OnClick(e){
+	var obj = canvas;
+    var top = 0;
+    var left = 0;
+    while (obj && obj.tagName != 'BODY') {
+        top += obj.offsetTop;
+        left += obj.offsetLeft;
+        obj = obj.offsetParent;
+    }
+	
+	mouseClickX = e.clientX - left + window.pageXOffset;
+	mouseClickY = e.clientY - top + window.pageYOffset;
+}
 
 //
 var UpdateTitleScreen = function(){
 	var diffSelec = [ctx.measureText("Easy"),
 					ctx.measureText("Medium"),
 					ctx.measureText("Hard")];
-
-	if(mouseX < (width - width/4 - 35 + diffSelec[2]))
+	var leftMargin = width - width/4 - 35;
+	
+	if((mouseLocX < (leftMargin + diffSelec[0].width)) && (mouseLocX >  leftMargin) &&
+		(mouseLocY > height - height/4 - 45 -20) && (mouseLocY < height - height/4 - 15 -20))
 	{
+		optionSelected = 1;
 	}
+	else if((mouseLocX < (leftMargin + diffSelec[1].width)) && (mouseLocX >  leftMargin) &&
+		(mouseLocY > height - height/4 - 15 -20) && (mouseLocY < height - height/4 + 15 -20))
+	{
+		optionSelected = 2;
+	}
+	else if((mouseLocX < (leftMargin + diffSelec[2].width)) && (mouseLocX >  leftMargin) &&
+		(mouseLocY > height - height/4 + 15 -20) && (mouseLocY < height - height/4 + 45 -20))
+	{
+		optionSelected = 3;
+	}
+	else
+		optionSelected = 0;
 };
 
 var DrawTitleScreen = function(){
@@ -52,9 +106,18 @@ var DrawTitleScreen = function(){
 	
 	ctx.textAlign = "left";
 	ctx.fillStyle = "#999";
-	ctx.fillText("Easy", width - width/4 - 35, height - height/4 - 45);
-	ctx.fillText("Medium", width - width/4 - 35, height - height/4 - 15);
-	ctx.fillText("Hard", width - width/4 - 35, height - height/4 + 15);
+	
+	var i = 0;
+	var tempY = height - height/4 - 45;
+	for(i=0; i < 3; i++)
+	{
+		if(optionSelected == (i+1))
+			ctx.fillStyle = "#000";
+		ctx.fillText("" + titleText[i], width - width/4 - 35, tempY);
+		
+		tempY = tempY + 30;
+		ctx.fillStyle = "#999";
+	}
 };
 
 var UpdateInGame = function(){
@@ -101,13 +164,16 @@ var GameLoop = function(){
 			break;
 	}
 	
+	Debug();
+	
 	gLoop = setTimeout(GameLoop, 1000/30);
 };
 
 //sets up event listeners for mouseover and click
 //then starts the GameLoop function
 var init = function(){
-	addEventListener("mouseover", OnMouseOver, false);
+	addEventListener("mousemove", OnMouseMove, false);
+	addEventListener("click", OnClick, false);
 	//need event listener for mouse click
 	GameLoop();
 };
