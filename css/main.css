@@ -1,0 +1,48 @@
+*{
+	font-family  : Arial, Verdana, sans-serif;}
+body{
+	width: 90%;
+	margin: 0 auto;}
+a {
+	text-decoration: none;}
+a:hover {
+	text-decoration: underline;}
+#navList{
+	display: inline;
+	padding: 0.5em;}
+canvas {
+	outline:0;
+	border:1px solid #000;
+	margin-left: auto;
+	margin-right: auto;}
+th {
+	vertical-align: top;}
+table {
+	border-spacing: 3px 20px;}
+#population {
+	width: 200px;}
+#header{
+	text-align: center;}
+#content {
+	overflow: auto;
+	text-align: center;}
+#nav {
+	margin: 1%;
+	background-color: #cfcfcf;
+	padding: 0.5em 0;}
+.column1, .column2 {
+	min-width: 405px;
+	height: 475px;
+	width: 48%;
+	float: left;
+	margin: 1%;
+	background-color: #cfcfcf;}
+.column2 {
+	margin-right: 0%; }
+.questions{
+	padding: 0px 5px 0px 5px;
+	width: 98%;
+	margin: 1%;
+	float: left;
+	text-align: left;
+	background-color: #cfcfcf;}

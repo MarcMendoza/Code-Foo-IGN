@@ -1,0 +1,54 @@
+/*Author: Marc Mendoza
+*	IGN Code Foo Submission
+*	Question 2: Liquid Layout Code
+*	Summary: Css for window when width is <= 1050
+*/
+
+*{
+	font-family  : Arial, Verdana, sans-serif;}
+body{
+	width: 90%;
+	margin: 0 auto;}
+	
+/*Sets up links without decoration so that on hover
+	the links will be underlined*/
+a {
+	text-decoration: none;}
+a:hover {
+	text-decoration: underline;}
+	
+/*Various formatting, background color added to
+	make the box areas visible*/
+#header{
+	text-align: center;}
+#content {
+	overflow: auto;
+	text-align: center;}
+#nav {
+	margin: 1%;
+	background-color: #cfcfcf;
+	padding: 0.5em 0;}
+#Main {
+	overflow: scroll;
+	height: 200px;
+	margin: 1%;
+	background-color: #cfcfcf;}
+#nav {
+	float: left;
+	height: 150px;
+	width: 10%;
+	margin: 1%;
+	background-color: #cfcfcf;}
+	
+/*Sets up the sections to setup in two column
+	by splitting the space remaining from the
+	navigation to each of the columns*/
+.Even, .Odd {
+	min-width: 200px;
+	height: 500px;
+	width: 42.5%;
+	float: right;
+	margin: 1%;
+	background-color: #cfcfcf;}
+.Odd {
+	margin-right: 0%; }

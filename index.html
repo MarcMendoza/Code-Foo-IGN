@@ -1,0 +1,309 @@
+<!--Author: Marc Mendoza
+	IGN Code Foo Submission
+	Summary: Main Page that contains answer to all questions
+				for IGN Code Foo including bonus questions-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IGN Code Foo Submission</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		
+		<!--Just a favicon I had from another project-->
+		<link rel="icon" href="Images/40percent.ico" />
+		
+		<script src="q3Logic.js"></script>
+	</head>
+	
+	<body>
+		<div id="header">
+			<h1>IGN Code Foo Submission<br />By Marc Mendoza</h1>
+			<!--Links to sections within the page-->
+			<div id="nav">
+				<ul>
+					<li id="navList"><a href="#queOne">1) Ping Pongs</a></li>
+					<li id="navList"><a href="#queTwo">2) Liquid Layout</a></li>
+					<li id="navList"><a href="#queThree">3) License Plates</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="content">
+			<!--2 Minute Video setup using the html5 video player-->
+			<div class="bonus column1">
+				<h2>Bonus - Short Video</h2>
+				<video src="" width="400" height="400" 
+					controls="controls" preload="none">
+				</video>
+			</div>
+			
+			<!--section for the bonus connect 4 program. This was done using html5 canvas
+				and javascript in order to allow integration into this page-->
+			<div class="bonus column2">
+				<h2>Connect Four</h2>
+				<canvas id="Canvas" width="400" height="400"></canvas>
+				<script src="con4.js">Sorry, our browser does not support HTML5 Canvas </script>
+			</div>
+			
+			<!--The following are questions 1-3 and my answers set in a table to allow for
+				better formatting. Questions are included to easily see the question being
+				asked in relation to each answer-->
+			<div class="questions first">
+				<h2><a name="queOne"></a>Question 1) Ping Pongs and a Bus</h2>
+				<table>
+					<tr>
+						<th>Question:</th>
+						<td>
+							How many ping pong balls would it take to fill an average-sized school bus? Describe each step in your thought process.
+						</td>
+					</tr>
+					<tr>
+						<th>Answer:</th>
+						<td>
+							Since a bus is largely symmetric, it can be sectioned off so that a minimal
+							amount of measurements will be needed to figure out the number of ping pong
+							balls will fit into a bus. This idea breaks the bus into major areas, chair, center aisle, etc. then into sections, for chair it would be area above chair, below, etc. and then it would take slices of that section. This method involves taking measurements at
+							certain points on the bus and then combining those measurements with
+							measurements of the ping pong balls. A single measurement of width of the 
+							ping pong ball is needed. Once all measurements are known, the bigger areas are
+							added together to find the total number of ping pongs that would fit on the
+							bus. In areas where parts of the bus would take space from the ping pongs. 
+							When it is said to find the number of ping pongs that would fit the length,
+							it means to find the smallest that would contain the length in its entirety.
+							For example, if the length is 2cm and the width of a ping pong is 3cm. The 
+							number of ping pongs that would be needed is 2 ping pong balls. <br /><br />
+							
+							The images below are a general idea of how the 
+							bus is sectioned off. I apologize for the lack of neatness, don't have 
+							much experience with paint.<br /><br />
+							
+							<table>
+								<tr>
+									<td><img src="images/Bus/top.png" /></td>
+									<td><img src="images/Bus/rear.png" /></td>
+								</tr>
+								<tr>
+									<th>Figure 1) Top View of Bus</th>
+									<th>Figure 2) Rear View of Bus</th>
+								</tr>
+							</table>
+							These figures will be referenced below by "(Figure #) Color"<br /><br />
+							
+							The final addition/subtraction of the areas would be:<br />
+							Total Ping Pongs = Roof + Chair + Aisle + Stairs + Drivers Area<br />
+							Roof = (slice * # of slices that would fit length of bus) * 2<br />
+							Chair = (Above + Below + Chair itself) * Number of chairs<br />
+							Below = Area - Legs<br />
+							Chair Itself = slices * # of slices that would fit width of chair<br />
+							Aisle = section * number of sections that would fit in aisle<br />
+							Drivers Area = Total Area - steering wheel - chair - Pedals(varies depending on pedals themselves) <br />
+							steering wheel = grip area - connectors - center column<br />
+							Pedals = (piece1 + piece 2) * number of similar pedals
+							<br /><br />
+							
+							<b>Sections:</b>
+							<ol>
+								<li class="ordered">
+									<b>Roof - (2) Gray</b><br />
+									This section can be calculated by using half of the length of the
+									roof when looking at the rear of the bus and then foward from the
+									back from a top view, the length of the ping pong ball. This
+									"slice" of the roof can be multiplied by the number of slices
+									that fit from the rear of the bus to the front then doubled to 
+									account for half the bus. In order to figure out how much would
+									fit in a "slice", the width is measured and divided by the width
+									of the ping pong ball. Then in each smaller "slice", a measurement
+									from the bottom of the slice to the top of slice is taken at the middle of the slice and then divided into the width of the ping
+									pong balls. All of these smaller slices are then added to find the
+									number of ping pong balls fit in the bigger slice.
+								</li>
+								<li class="ordered">
+									<b>Chair</b><br />
+									The chairs in the bus are mirror images of each other and are
+									treated as such. Thus the (1) all green represents the chairs and
+									the (1) dark green represents the section we are seperating. Once
+									the measurements of the chair area is found, they are multiplied by
+									the number of chairs on the bus.
+									<ol>
+										<li class="ordered">
+											<b>Area above the chair - (2) Green</b><br />
+											The area is treated as a cube and length, width, and height
+											are needed. Then the number of ping pongs that will fit is
+											found and each number is multiplied together.
+										</li>
+										<li class="ordered">
+											<b>Area below the chair - (2) Yellow</b><br />
+											The previous step is repeated except that the legs of the 
+											chair is accounted for. The length and width of the leg
+											on the ground is measured and compared to the ping pong
+											width. The number of ping pongs that the leg would occupy
+											is accounted for and multiplied by 4 and subtracted from
+											total ping pongs found for this area. For example, if the
+											width =2cm and height =2cm of the base of the leg and the
+											ping pong = 3cm. It is assumed that 4 ping pongs would 
+											occupy the space that the leg would take and this is multiplied
+											by the height from the floor to the bottom of the chair.
+										</li>
+										<li class="ordered">
+											<b>Area containing the chair - (2) Red</b><br />
+											This assumes that the chairs have a straight back but a
+											curved seating area. The methods used in "area above the chair"
+											and "roof" is employed here. The area is divided into slices 
+											with the part closes to chair being variable with the number
+											of ping pongs that fit. So looking from the top view, a slice
+											would contain the length of the chair from the back of the 
+											bus to the front and the width would be the size of one ping
+											pong ball. Similar to the roof method, this slice is further
+											divided by the number of ping pongs that would fit length wise
+											and the height of each section is found the same way.
+										</li>
+									</ol>
+								</li>
+								<li class="ordered">
+									<b>Center aisle - (1) Gray / (2) Orange</b><br />
+									Note: This area also covers the area above the stairs, it just was not
+									possible to color code as such.
+									This area is sectioned off further into the area above the stairs and
+									it is assumed this area is the same width as the center aisle (personal
+									experience). This area's length, width, and height is found and the 
+									number of ping pong that fit in this area are found same as in previous
+									steps. This area is then multiplied by the number of times it fits down
+									the center aisle.
+								</li>
+								<li class="ordered">
+									<b>Stairs (1) Red</b><br />
+									This area is sectioned by each step. For example, if there are 3 steps
+									then there are three sections. At each section, the length, width, and
+									height are found and the same process is repeated as in previous areas.
+									These sections are added once found.
+								</li>
+								<li class="ordered">
+									<b>Drivers area - (1) Yellow</b><br />
+									I apologize if my explanation in this next section is unclear. This
+									area is trickier to explain in words.<br /><br />
+									
+									This area is similar to the chair area with several more variables
+									that take space to account for. In order to find the number of ping
+									pongs that fit in the area the exact methods as in Chair is done,
+									including how the area is sectioned.<br /><br />
+									
+									The following explains how to account for variables taking more space
+									from the ping pongs.
+									<ol>
+										<li class="ordered">
+											<b>Pedals</b><br />
+											The pedal can be accounted for in two pieces. The first piece
+											would be the flat part of the pedal itself and the second
+											would be the strip of plastic going from the pedal to the 
+											floor.<br /><br />
+											<b>Piece 1)</b> This can be accounted for simply by taking the length
+											and width of the piece and assuming that the thickness of the
+											pedal would fit less than the height of one pedal. Then using
+											the width and length, the number of ping pongs to remove from
+											the overall calculations would be found.<br /><br />
+											<b>Piece 2)</b> The length of the strip is taken and then the number 
+											of ping pong balls that fit into that length is the number
+											to be added with piece 1.<br /><br />
+											Piece 1 and 2 are added and multiplied by the number of pedals.
+											A remeasurement of a pedal might be needed depending on how
+											the pedals are made. This number is subtracted from this area, 
+											to account for the space that is taken up.
+										</li>
+										<li class="ordered">
+											<b>Steering Wheel</b><br />
+											This area is the trickest to account for. This can be seperated
+											into 3 areas. 
+											<ol>
+												<li class="ordered">
+													<b>Grip Area:</b>
+													The length of the steering wheel is found and the 
+													number of ping pongs that would fit is then accounted
+													for.												
+												</li>
+												<li class="ordered">
+													<b>Connectors from Grip to Center:</b>
+													This is easily accounted for considering the width
+													will likely not be larger than a ping pong ball. Thus
+													all that is needed is the length and the number of ping
+													pongs that would fit in that area. This number is
+													multiplied by the number of connectors.
+												</li>
+												<li class="ordered">
+													<b>Center:</b> 
+													This is from the horn center downward. Since this is
+													the same size until it enters the bus, the number of
+													ping pongs that would fit in the flat area of the 
+													center column and still contain all of the area is
+													found and multiplied by the length.
+												</li>
+											</ol>
+										</li>
+									</ol>
+								</li>
+							</ol>
+						</td>
+					</tr>
+					<tr>
+						<th>Alternate Answer:</th>
+						<td>
+							If there was no limitation to damage to the bus and resources, another way to solve
+							this would be to fill the bus with water and find the volume of the water. Then find
+							the volume of a ping pong and divide the total volume with the ping pong's volume.
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="questions second">
+				<h2><a name="queTwo"></a>Question 2) Liquid Layout</h2>
+				<table>
+					<tr>
+						<th>Question:</th>
+						<td>
+							Create a liquid layout with HTML, CSS, and Javascript. This layout must support the following resolutions: 1024x768, 1680x1050. Explain why you would use a liquid layout.
+						</td>
+					</tr>
+					<tr>
+						<th>Answer:</th>
+						<td>
+							<a href="liquidLayout/liquid.html">Link to Coded Layout</a> <br /> 
+							Using a liquid layout would allow the website to dynamically resize different
+							sections based on the browser size. This means that the sections can contract on a smaller window and expand on a bigger window while still keeping the 
+							overall layout intact. The layout is also tolerant of the different font sizes
+							that the user might have set while still keeping the layout.
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="questions third">
+				<h2><a name="queThree"></a>Question 3) License Plate Manufacturing Company</h2>
+				<table>
+					<tr>
+						<th>Question:</th>
+						<td>
+							You own a license plate manufacturing company. Write a program that takes a population and determines the simplest pattern that will produce enough unique plates. Since all the plates that match the pattern will be generated, find the pattern that produces the least excess plates. Use a combination of letters (A-Z) and numbers (0-9).
+						</td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<th>Answer:</th>
+						<td>
+							<b>Note:</b><br />The program will accept positive numbers greater than 0 and less than or equal to 26^6. It will also accept numbers that are not integers. In the program this is handled through parsing the input population. This program is made with the assumption that the max number of elements on a license plate is six based on the state that I live in. <br /> <br />
+							<b>Instructions:</b><br />Please enter a positive number below in the textbox and press the button.
+							<table>
+								<tr>
+									<th>Enter a Population:</th>
+									<td><input type="text" id="population" value="" /></td>
+								</tr>
+								<tr>
+									<th>Smallest Pattern Is:</th>
+									<td><textarea id="pattern" rows="4" cols="30" readonly="readonly"></textarea></td>
+								</tr>
+							</table>
+							<input type="button" id="generate" value="Get Answer" onClick="getAnswer()"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html

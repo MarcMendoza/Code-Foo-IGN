@@ -17,7 +17,10 @@ var gloop,
 // 2: In-Game
 // 3: Pause Menu
 // 4: Finished Screen
-enum GameState {TitleMenu, InGame, PauseMenu, FinishedScreen};
+var GameState = {"TitleMenu":0, 
+					"InGame":1, 
+					"PauseMenu":2, 
+					"FinishScreen":3}
 var curGameState = GameState.TitleScreen;
 
 var titleText = ["Easy",
@@ -146,19 +149,19 @@ var GameLoop = function(){
 	//smaller to be better defined
 	switch(curGameState)
 	{
-		case 1: //Title Menu
+		case GameState.TitleMenu: //Title Menu
 			UpdateTitleScreen();
 			DrawTitleScreen();
 			break;
-		case 2: //In-Game
+		case GameState.InGame: //In-Game
 			UpdateInGame();
 			DrawInGame();
 			break;
-		case 3: //Pause Menu
+		case GameState.PauseMenu: //Pause Menu
 			UpdatePauseMenu();
 			DrawPauseMenu();
 			break;
-		case 4: //Finished Screen
+		case GameState.FinishScreen: //Finished Screen
 			UpdateFinishScreen();
 			DrawFinishScreen();
 			break;

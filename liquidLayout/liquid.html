@@ -1,0 +1,81 @@
+<!--Author: Marc Mendoza
+	IGN Code Foo Submission
+	Question 2: Liquid Layout Code
+	Summary: This is a basic setup of a liquid layout that has 2 different css
+				that is referenced based on the width of the window. The boxes
+				marked as "Section #" will either be in a single column if 
+				the width of the window is less than 1050 or two columns if it
+				is greater than 1050. The height from the question was not 
+				taken into account because basing the layout on height seemed 
+				impractical. This is because the width should be the only 
+				thing that is dynamic as this simply will reposition the text 
+				to be longer on the screen while height would only allow more 
+				of the screen to be visible at once.-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IGN Code Foo Submission - Liquid Layout Code</title>
+		
+		<!--the id allows the javascript to change the css link-->
+		<link id="styleSheet" rel="stylesheet" type="text/css" href="style/lowerRes.css" />
+		
+		<!--Just a favicon I had from another project-->
+		<link rel="icon" href="Images/40percent.ico" />
+		
+		<!--Javascript that changes the css based on width of the window-->
+		<script src="adjust.js"></script>
+	</head>
+	
+	<body>
+		<div id="header">
+			<h1>Liquid Layout Code</h1>
+		</div>
+		
+		<div id="content">
+			<!--This section is a stand in for a top news area-->
+			<div id="Main">
+				<h2>Summary - <a href="../index.html">Link Back to Index</a></h2>
+				<p>This is a basic setup of a liquid layout that has 2 different css
+				that is referenced based on the width of the window. The boxes
+				marked as "Section #" will either be in a single column if 
+				the width of the window is less than 1050 or two columns if it
+				is greater than 1050. The height from the question was not 
+				taken into account because basing the layout on height seemed 
+				impractical. This is because the width should be the only 
+				thing that is dynamic as this simply will reposition the text 
+				to be longer on the screen while height would only allow more 
+				of the screen to be visible at once.</p>
+			</div>
+			
+			<!--Stand-in for a left side navigation area-->
+			<div id="nav">
+				<h2>Navigation</h2>
+			</div>
+			
+			<!--Area that will change based on window size:
+				less than 1050 window width: 1 Column
+				equal to or greater than 1050 window width: 2 Columns -->
+			<div id="center">
+				<div class="Even">
+					<h2>Section 1</h2>
+				</div>
+				<div class="Odd">
+					<h2>Section 2</h2>
+				</div>
+				<div class="Even">
+					<h2>Section 3</h2>
+				</div>
+				<div class="Odd">
+					<h2>Section 4</h2>
+				</div>
+			</div>
+		</div>
+		
+		<!--Bottom of page that reacts the same to "top feature area" when window
+			resize occurs-->
+		<div id="footer">
+			<h2>Footer</h2>
+		</div>
+	</body>
+</html
