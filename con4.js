@@ -21,7 +21,7 @@ var GameState = {"TitleMenu":0,
 					"InGame":1, 
 					"PauseMenu":2, 
 					"FinishScreen":3}
-var curGameState = GameState.TitleScreen;
+var curGameState = GameState.TitleMenu;
 
 var titleText = ["Easy",
 				"Medium",
@@ -31,6 +31,7 @@ var clear = function(){
 	ctx.clearRect(0, 0, width, height);
 };
 
+//various debug statements
 var Debug = function(){
 	ctx.font="20px Comic Sans MS";
 	ctx.fillStyle="#999";
@@ -42,6 +43,7 @@ var Debug = function(){
 	ctx.fillText("mouseClickY: " + mouseClickY, 180, 50);
 };
 
+//keeps track of the mouse for mouse overs
 var OnMouseMove = function onMouseover(e){
 	var obj = canvas;
     var top = 0;
@@ -56,6 +58,7 @@ var OnMouseMove = function onMouseover(e){
 	mouseLocY = e.clientY - top + window.pageYOffset;
 };
 
+//event listener for on click
 var OnClick = function OnClick(e){
 	var obj = canvas;
     var top = 0;
@@ -70,7 +73,7 @@ var OnClick = function OnClick(e){
 	mouseClickY = e.clientY - top + window.pageYOffset;
 }
 
-//
+// updates based on mouse location 
 var UpdateTitleScreen = function(){
 	var diffSelec = [ctx.measureText("Easy"),
 					ctx.measureText("Medium"),
@@ -82,7 +85,7 @@ var UpdateTitleScreen = function(){
 	{
 		optionSelected = 1;
 	}
-	else if((mouseLocX < (leftMargin + diffSelec[1].width)) && (mouseLocX >  leftMargin) &&
+	/*else if((mouseLocX < (leftMargin + diffSelec[1].width)) && (mouseLocX >  leftMargin) &&
 		(mouseLocY > height - height/4 - 15 -20) && (mouseLocY < height - height/4 + 15 -20))
 	{
 		optionSelected = 2;
@@ -91,11 +94,21 @@ var UpdateTitleScreen = function(){
 		(mouseLocY > height - height/4 + 15 -20) && (mouseLocY < height - height/4 + 45 -20))
 	{
 		optionSelected = 3;
-	}
+	}*/
 	else
 		optionSelected = 0;
 };
 
+var UpdateInGame = function(){
+};
+
+var UpdatePauseMenu = function(){
+};
+
+var UpdateFinishScreen = function(){
+};
+
+//draw for title screen
 var DrawTitleScreen = function(){
 	ctx.fillStyle = "#000000";
 	ctx.textAlign = "center";
@@ -110,6 +123,7 @@ var DrawTitleScreen = function(){
 	ctx.textAlign = "left";
 	ctx.fillStyle = "#999";
 	
+	//loop to draw the difficulty
 	var i = 0;
 	var tempY = height - height/4 - 45;
 	for(i=0; i < 3; i++)
@@ -123,24 +137,17 @@ var DrawTitleScreen = function(){
 	}
 };
 
-var UpdateInGame = function(){
-};
-
 var DrawInGame = function(){
-};
-
-var UpdatePauseMenu = function(){
 };
 
 var DrawPauseMenu = function(){
 };
 
-var UpdateFinishScreen = function(){
-};
-
 var DrawFinishScreen = function(){
 };
 
+//continous loop that calls the corresponding update/draw based
+//on current game state
 var GameLoop = function(){
 	clear(); //clear screen of previous draws
 	
